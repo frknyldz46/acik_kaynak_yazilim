@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn instance to serve frknproject
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/frknproject
+ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:frknproject.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
